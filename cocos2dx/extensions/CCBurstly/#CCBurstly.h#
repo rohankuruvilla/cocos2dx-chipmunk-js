@@ -1,0 +1,82 @@
+#include "string"
+#include "map"
+
+#ifndef __BURSTLYCONTROLLER_C_INTERFACE_H__
+#define __BURSTLYCONTROLLER_C_INTERFACE_H__ 1
+
+class BurstlyAdDelegate {
+public:
+    void virtual nativeDidFinishLoading (const char *adId) = 0;
+    void virtual nativeDidStartRequest (const char *adId)= 0;
+    void virtual nativeDidPrecacheAd (const char *adId)= 0;
+    void virtual nativeDidFinishLoading (const char *adId, bool isInterstitial)= 0;
+    void virtual nativeRequestThrottled (int time)= 0;
+    void virtual nativeFailedToLoad (const char *adId)= 0;
+    void virtual nativeAttemptingToLoad (const char *adId)= 0;
+};
+
+class BurstlyAdController {
+public:
+    int setupBurstlyParams (const char *pubId, const char *zId, int pos, const char *burstlyAdId);
+    void showBurstlyAd ();
+    void setDelegate(BurstlyAdDelegate *delegate);
+};
+
+
+
+
+
+    void Java_org_cocos2dx_lib_Cocos2dxBurstlyController_nativeDidLoad(JNIEnv* env, jobject thiz, jstring text, jint isInterstitial)
+    {
+        const char* pszText = env->GetStringUTFChars(text, NULL);
+		__android_log_print(ANDROID_LOG_VERBOSE, "Test23", "GOT DELEGATE: %s",pszText); 
+       
+    }
+    
+    void Java_org_cocos2dx_lib_Cocos2dxBurstlyController_nativeFailedToLoad(JNIEnv* env, jobject thiz, jstring text)
+    {
+        const char* pszText = env->GetStringUTFChars(text, NULL);
+		__android_log_print(ANDROID_LOG_VERBOSE, "Test23", "GOT DELEGATE: %s",pszText); 
+       
+    }
+     void Java_org_cocos2dx_lib_Cocos2dxBurstlyController_nativeStartRequestToServer(JNIEnv* env, jobject thiz)
+    {
+		__android_log_print(ANDROID_LOG_VERBOSE, "Test23", "GOT DELEGATE: finishRequestToServer"); 
+       
+    }
+       void Java_org_cocos2dx_lib_Cocos2dxBurstlyController_nativeFinishRequestToServer(JNIEnv* env, jobject thiz)
+    {
+		__android_log_print(ANDROID_LOG_VERBOSE, "Test23", "GOT DELEGATE: finishRequestToServer"); 
+       
+    }
+       void Java_org_cocos2dx_lib_Cocos2dxBurstlyController_nativeAttemptingToLoad(JNIEnv* env, jobject thiz, jstring text)
+    {
+        const char* pszText = env->GetStringUTFChars(text, NULL);
+		__android_log_print(ANDROID_LOG_VERBOSE, "Test23", "GOT DELEGATE:AttemptingToLoad"); 
+       
+    }
+    void Java_org_cocos2dx_lib_Cocos2dxBurstlyController_nativeAdNetworkWasClicked(JNIEnv* env, jobject thiz, jstring text)
+    {
+        const char* pszText = env->GetStringUTFChars(text, NULL);
+		__android_log_print(ANDROID_LOG_VERBOSE, "Test23", "GOT DELEGATE: AdNetworkWasClicked"); 
+       
+    }
+    void Java_org_cocos2dx_lib_Cocos2dxBurstlyController_nativeAdNetworkPresentFullScreen(JNIEnv* env, jobject thiz, jstring text)
+    {
+        const char* pszText = env->GetStringUTFChars(text, NULL);
+		__android_log_print(ANDROID_LOG_VERBOSE, "Test23", "GOT DELEGATE: %s",pszText); 
+       
+    }
+    void Java_org_cocos2dx_lib_Cocos2dxBurstlyController_nativeAdNetworkDismissFullScreen(JNIEnv* env, jobject thiz, jstring text)
+    {
+        const char* pszText = env->GetStringUTFChars(text, NULL);
+		__android_log_print(ANDROID_LOG_VERBOSE, "Test23", "GOT DELEGATE: %s",pszText); 
+       
+    }
+
+
+
+#endif
+
+
+
